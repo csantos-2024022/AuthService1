@@ -3067,11 +3067,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Informatica\\Desktop\\SextoPerito\\AuthService\\src\\AuthServiceIN6BM.Persistence\\AuthServiceIN6BM.Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\Informatica\\Desktop\\AuthService\\src\\AuthServiceIN6BM.Persistence\\AuthServiceIN6BM.Persistence.csproj",
       "projectName": "AuthServiceIN6BM.Persistence",
-      "projectPath": "C:\\Users\\Informatica\\Desktop\\SextoPerito\\AuthService\\src\\AuthServiceIN6BM.Persistence\\AuthServiceIN6BM.Persistence.csproj",
+      "projectPath": "C:\\Users\\Informatica\\Desktop\\AuthService\\src\\AuthServiceIN6BM.Persistence\\AuthServiceIN6BM.Persistence.csproj",
       "packagesPath": "C:\\Users\\Informatica\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Informatica\\Desktop\\SextoPerito\\AuthService\\src\\AuthServiceIN6BM.Persistence\\obj\\",
+      "outputPath": "C:\\Users\\Informatica\\Desktop\\AuthService\\src\\AuthServiceIN6BM.Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Informatica\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3086,11 +3086,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Informatica\\Desktop\\SextoPerito\\AuthService\\src\\AuthServiceIN6BM.Application\\AuthServiceIN6BM.Application.csproj": {
-              "projectPath": "C:\\Users\\Informatica\\Desktop\\SextoPerito\\AuthService\\src\\AuthServiceIN6BM.Application\\AuthServiceIN6BM.Application.csproj"
+            "C:\\Users\\Informatica\\Desktop\\AuthService\\src\\AuthServiceIN6BM.Application\\AuthServiceIN6BM.Application.csproj": {
+              "projectPath": "C:\\Users\\Informatica\\Desktop\\AuthService\\src\\AuthServiceIN6BM.Application\\AuthServiceIN6BM.Application.csproj"
             },
-            "C:\\Users\\Informatica\\Desktop\\SextoPerito\\AuthService\\src\\AuthServiceIN6BM.Domain\\AuthServiceIN6BM.Domain.csproj": {
-              "projectPath": "C:\\Users\\Informatica\\Desktop\\SextoPerito\\AuthService\\src\\AuthServiceIN6BM.Domain\\AuthServiceIN6BM.Domain.csproj"
+            "C:\\Users\\Informatica\\Desktop\\AuthService\\src\\AuthServiceIN6BM.Domain\\AuthServiceIN6BM.Domain.csproj": {
+              "projectPath": "C:\\Users\\Informatica\\Desktop\\AuthService\\src\\AuthServiceIN6BM.Domain\\AuthServiceIN6BM.Domain.csproj"
             }
           }
         }
