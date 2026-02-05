@@ -9,21 +9,21 @@ using System.Security.Cryptography.X509Certificates;
  
 var builder = WebApplication.CreateBuilder(args);
  
-builder.host.UseSerilog((Context, FormatterServices, loggerConfiguration) =>
+builder.Host.UseSerilog((Context, FormatterServices, loggerConfiguration) =>
     loggerConfiguration
         .ReadFrom.Configuration(Context.configuration)
         .ReadFrom.Services(services));
  
 builder.Services.AddControllers(options =>
 {
-    options.ModelBinderProvider.Insert(0, new FileDataModelBinderProvider());
+    options.ModelBinderProviders.Insert(0, new FileDataModelBinderProvider());
 })
 .AddJsonOptions(o =>
 {
     o.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
 });
  
-builder.Services.AddApplicationServices(builder.configuration);
+builder.Services.AddApplicationServices(builder.Configuration);
  
 var app = builder.Build();
  
@@ -95,9 +95,9 @@ app.Lifetime.ApplicationStarted.Register(() =>
 // Core middlewares
 app.UseHttpsRedirection();
 app.UseCors("DefaultCorsPolicy");
-app.UseRateLimiter();
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseRateLimiter();
+//app.UseAuthentication();
+//app.UseAuthorization();
  
 app.MapControllers();
  
@@ -110,7 +110,7 @@ app.MapGet("/health", () =>
         status = "Healthy",
         timestamps = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")
     };
-    return Results.ok(response);
+    return Results.Ok(response);
 });
  
 // Initialize database and seed data

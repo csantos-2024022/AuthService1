@@ -12,7 +12,7 @@ public static class ServiceCollectionExtensios
     {
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UserNpgsql(configuration.GetConnectionString("DefaultConnection"))
-                .UserSnakeCaseNamingConventions());
+                .UserSnakeCaseNamingConvention());
                 
 
 
