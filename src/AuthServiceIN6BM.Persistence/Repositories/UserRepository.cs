@@ -1,6 +1,6 @@
 using AuthServiceIN6BM.Application.Services;
 using AuthServiceIN6BM.Domain.Entities;
-using AuthServiceIN6BM.Domain.Interface;
+using AuthServiceIN6BM.Domain.Interfaces;
 using AuthServiceIN6BM.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
  
@@ -8,7 +8,7 @@ namespace AuthServiceIN6BM.Persistence.Repositories;
  
 public class UserRepository(ApplicationDbContext context) : IUserRepository
 {
-    public async Task<User> GetByIdAsyn(string id)
+    public async Task<User> GetByIdAsync(string id)
     {
         var user = await context.Users
             .Include(u => u.UserProfile)
@@ -74,19 +74,19 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
     {
         context.Users.Add(user);
         await context.SaveChangesAsync();
-        return await GetByIdAsyn(user.Id);
+        return await GetByIdAsync(user.Id);
     }
  
     public async Task<User> UpdateAsync(User user)
     {
         context.Users.Update(user);
         await context.SaveChangesAsync();
-        return await GetByIdAsyn(user.Id);
+        return await GetByIdAsync(user.Id);
     }
  
     public async Task<bool> DeleteAsync(string id)
     {
-        var user = await GetByIdAsyn(id);
+        var user = await GetByIdAsync(id);
         context.Users.Remove(user);
         await context.SaveChangesAsync();
         return true;

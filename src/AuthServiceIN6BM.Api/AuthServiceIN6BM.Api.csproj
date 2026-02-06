@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.20" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.9">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AuthServiceIN6BM.Application\AuthServiceIN6BM.Application.csproj" />
     <ProjectReference Include="..\AuthServiceIN6BM.Persistence\AuthServiceIN6BM.Persistence.csproj" />
+    <ProjectReference Include="..\AuthServiceIN6BM.Domain\AuthServiceIN6BM.Domain.csproj" />
   </ItemGroup>
 
 </Project>

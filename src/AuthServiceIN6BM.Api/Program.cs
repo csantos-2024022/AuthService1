@@ -1,4 +1,5 @@
 using AuthServiceIN6BM.Persistence.Data;
+using AuthServiceIN6BM.Api.Middlewares;
 using AuthServiceIN6BM.Api.Extensions;
 using AuthServiceIN6BM.Api.ModelBinders;
 using Serilog;
@@ -9,21 +10,30 @@ using System.Security.Cryptography.X509Certificates;
  
 var builder = WebApplication.CreateBuilder(args);
  
-builder.Host.UseSerilog((Context, FormatterServices, loggerConfiguration) =>
+builder.Host.UseSerilog((hostBuilderContext, services, loggerConfiguration) =>
+{
     loggerConfiguration
-        .ReadFrom.Configuration(Context.configuration)
-        .ReadFrom.Services(services));
+        .ReadFrom.Configuration(hostBuilderContext.Configuration)
+        .ReadFrom.Services(services);
+});
  
 builder.Services.AddControllers(options =>
 {
-    options.ModelBinderProviders.Insert(0, new FileDataModelBinderProvider());
+    options.ModelBinderProviders.Insert(
+        0,
+        new FileDataModelBinder.FileDataModelBinderProvider() // nota la referencia a la clase anidada
+    );
 })
 .AddJsonOptions(o =>
 {
     o.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
 });
+
  
 builder.Services.AddApplicationServices(builder.Configuration);
+builder.Services.AddApiDocumentation();
+builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddRateLimitingPolicies();
  
 var app = builder.Build();
  
@@ -92,16 +102,19 @@ app.Lifetime.ApplicationStarted.Register(() =>
     }
 });
  
+//Global exception hondling
+app.UseMiddleware<GlobalExceptionMiddleware>();
+ 
 // Core middlewares
 app.UseHttpsRedirection();
 app.UseCors("DefaultCorsPolicy");
-//app.UseRateLimiter();
-//app.UseAuthentication();
-//app.UseAuthorization();
+app.UseRateLimiter();
+app.UseAuthentication();
+app.UseAuthorization();
  
 app.MapControllers();
  
-app.MapHeltthChecks("/health");
+app.MapHealthChecks("/health");
  
 app.MapGet("/health", () =>
 {

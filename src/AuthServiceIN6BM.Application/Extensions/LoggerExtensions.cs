@@ -5,47 +5,27 @@ namespace AuthServiceIN6BM.Application.Extensions;
 
 public static partial class LoggerExtensions
 {
-    [LoggerMessage(
-        EventId = 1001,
-        Level = LogLevel.Information,
-        Message = "User {username} registered successfuly"
-    )]
+    [LoggerMessage(1001, LogLevel.Information,
+        "User {username} registered successfully")]
     public static partial void LogUserRegistered(this ILogger logger, string username);
 
-    [LoggerMessage(
-        EventId = 1002,
-        Level = LogLevel.Information,
-        Message = "User login succeded"
-    )]
+    [LoggerMessage(1002, LogLevel.Information,
+        "User login succeeded")]
     public static partial void LogUserLoggedIn(this ILogger logger);
 
-    [LoggerMessage(
-        EventId = 1003,
-        Level = LogLevel.Warning,
-        Message = "Failed login attempt"
-    )]
-    public static partial void LogFailLoginAttempt(this ILogger logger);
+    [LoggerMessage(1003, LogLevel.Warning,
+        "Failed login attempt")]
+    public static partial void LogFailedLoginAttempt(this ILogger logger);
 
-    [LoggerMessage(
-        EventId = 1004,
-        Level = LogLevel.Warning,
-        Message = "Registration rejected: email already exists"
-    )]
-    public static partial void LogRegistrarionWithExistingEmail(this ILogger logger);
+    [LoggerMessage(1004, LogLevel.Warning,
+        "Registration rejected: email already exists")]
+    public static partial void LogRegistrationWithExistingEmail(this ILogger logger);
 
-    [LoggerMessage(
-        EventId = 1005,
-        Level = LogLevel.Warning,
-        Message = "Registration rejected: username already exists"
-    )]
-    public static partial void LogRegistrarionWithExistingusername(this ILogger logger);
+    [LoggerMessage(1005, LogLevel.Warning,
+        "Registration rejected: username already exists")]
+    public static partial void LogRegistrationWithExistingUsername(this ILogger logger);
 
-
-    [LoggerMessage(
-        EventId = 1006,
-        Level = LogLevel.Warning,
-        Message = "Error uploading profile image"
-    )]
+    [LoggerMessage(1006, LogLevel.Warning,
+        "Error uploading profile image")]
     public static partial void LogImageUploadError(this ILogger logger);
-
 }

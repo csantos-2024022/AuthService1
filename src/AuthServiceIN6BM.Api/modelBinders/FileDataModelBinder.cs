@@ -1,14 +1,14 @@
-using AuthService.Api.Models;
+using AuthServiceIN6BM.Api.Models;
 using AuthServiceIN6BM.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace AuthServiceIN6BM.Api.ModelBinding;
+namespace AuthServiceIN6BM.Api.ModelBinders;
 
 public class FileDataModelBinder : IModelBinder
 {
-    public Task BinModelAsync(ModelBindingContext bindingContext)
+    public Task BindModelAsync(ModelBindingContext bindingContext)
     {
-        ArgumentNullException.TrowIfNull(bindingContext);
+        ArgumentNullException.ThrowIfNull(bindingContext);
 
         if (!typeof(IFileData).IsAssignableFrom(bindingContext.ModelType))
         {
@@ -16,29 +16,30 @@ public class FileDataModelBinder : IModelBinder
         }
 
         var request = bindingContext.HttpContext.Request;
-
         var file = request.Form.Files.GetFile(bindingContext.FieldName);
 
-        if (file != null && file.lenght > 0)
+        if (file != null && file.Length > 0)
         {
-            var fileData = new formFileAdapter(file);
-            bindingContext.Result = ModelBinding.Success(fileData);
+            var fileData = new FormFileAdapter(file);
+            bindingContext.Result = ModelBindingResult.Success(fileData);
         }
         else
         {
             bindingContext.Result = ModelBindingResult.Success(null);
         }
+
         return Task.CompletedTask;
     }
 
-    public class FileDataModelBinderProvider : ImodelBinderProvider
+    public class FileDataModelBinderProvider : IModelBinderProvider
     {
         public IModelBinder? GetBinder(ModelBinderProviderContext context)
         {
-            if (typeof(IFileData).IsAssignableFrom(context.MetaData.ModelType))
+            if (typeof(IFileData).IsAssignableFrom(context.Metadata.ModelType))
             {
                 return new FileDataModelBinder();
             }
+
             return null;
         }
     }

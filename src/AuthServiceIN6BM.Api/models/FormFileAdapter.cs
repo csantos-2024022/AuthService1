@@ -1,15 +1,15 @@
-using AuthServicesIN6BM.Application.Interfaces;
+using AuthServiceIN6BM.Application.Interfaces;
 
 namespace AuthServiceIN6BM.Api.Models;
 
-public class FormFileAdapter : IfileData
+public class FormFileAdapter : IFileData
 {
-    private readonly IFormfile _formfile;
+    private readonly IFormFile _formfile;
     private byte[]? _data;
 
     public FormFileAdapter(IFormFile formFile)
     {
-        AgumentNullException.TroeIfNull(formFile);
+        ArgumentNullException.ThrowIfNull(formFile);
         _formfile = formFile;
     }
 
@@ -29,5 +29,5 @@ public class FormFileAdapter : IfileData
 
     public string ContentType => _formfile.ContentType;
     public string FileName => _formfile.FileName;
-    public long Size => _formfile.lenght;
+    public long Size => _formfile.Length;
 }
